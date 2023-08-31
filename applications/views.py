@@ -4,10 +4,22 @@ from django.contrib import messages
 from django.http import HttpResponse
 from .models import User,CandidateForm,EducationalDetailsForm
 from django.contrib.auth import authenticate, login,logout
+from django.template.loader import render_to_string
+import pdfkit
 
 # Create your views here.
 def home(request):
     return render(request,'applications/home.html')
+
+def downloadPdf(request):
+    path=r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+    config=pdfkit.configuration(wkhtmltopdf=path)
+    data=CandidateForm.objects.all()[0]
+    html = render_to_string('applications/pdf.html', {'name':data.candidateName,'cno':data.contactNo,'dob':data.dateOfBirth,'gender':data.gender,'fname':data.fatherName,'focc':data.foccupation,'Mname':data.motherName,'mocc':data.moccupation,'mstat':data.martialStat,'adno':data.AdhaarNo,'peraddress':data.phouseno,'perstreet':data.pstreetcolony,'perstate':data.pstate,'pinno':data.ppincode,'phno':data.prehouseno,'pstreet':data.prestreetcolony,'pstate':data.prestate,'pinno2':data.prepincode})
+    pdf=pdfkit.from_string(html,configuration=config,options={"enable-local-file-access": ""})
+    response=HttpResponse(pdf,content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="example.pdf"'
+    return response
 
 def logoutUser(request):
     logout(request)

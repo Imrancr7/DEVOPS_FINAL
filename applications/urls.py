@@ -10,5 +10,6 @@ urlpatterns = [
     path('edu&financedetailsform/',views.educationalDetailsForm,name='educational_form_page'),
     # path('uploadDocuments/',views.uploadDocumentsForm,name='upload_documents_page'),
     path('submit_the_Application/',views.submitApplication,name='submit_page'),
-    path('logout/',views.logoutUser,name='logout_page')
+    path('logout/',views.logoutUser,name='logout_page'),
+    path('download/',views.downloadPdf)
 ]
