@@ -11,5 +11,5 @@ urlpatterns = [
     # path('uploadDocuments/',views.uploadDocumentsForm,name='upload_documents_page'),
     path('submit_the_Application/',views.submitApplication,name='submit_page'),
     path('logout/',views.logoutUser,name='logout_page'),
-    path('download/',views.downloadPdf)
+    path('download/',views.downloadPdf,name='download_pdf')
 ]
