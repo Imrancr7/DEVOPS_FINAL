@@ -14,7 +14,7 @@ def home(request):
 def downloadPdf(request):
     path=r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
     config=pdfkit.configuration(wkhtmltopdf=path)
-    data=CandidateForm.objects.all()[1]
+    data=CandidateForm.objects.all()[0]
     html = render_to_string('applications/pdf.html', {'name':data.candidateName,'cno':data.contactNo,'dob':data.dateOfBirth,'gender':data.gender,'fname':data.fatherName,'focc':data.foccupation,'Mname':data.motherName,'mocc':data.moccupation,'mstat':data.martialStat,'adno':data.AdhaarNo,'peraddress':data.phouseno,'perstreet':data.pstreetcolony,'perstate':data.pstate,'pinno':data.ppincode,'phno':data.prehouseno,'pstreet':data.prestreetcolony,'pstate':data.prestate,'pinno2':data.prepincode})
     pdf=pdfkit.from_string(html,configuration=config,options={"enable-local-file-access": ""})
     response=HttpResponse(pdf,content_type='application/pdf')
