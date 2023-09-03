@@ -1,7 +1,9 @@
-FROM python:3.11-alpine
+FROM python:3.11
 
 # RUN apk update && apk upgrade
-RUN apk add build-base
+# RUN apk add build-base
+RUN apt-get install gcc
+RUN apt-get install wkhtmltopdf
 
 WORKDIR /app
 
