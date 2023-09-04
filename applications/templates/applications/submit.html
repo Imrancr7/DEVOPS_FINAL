@@ -40,7 +40,7 @@
             </div>
             <div class="logout">
                 <button id="logout" type="submit" onclick=myfunc()><a class="textnodeco hover" href="{% url 'logout_page' %}"  ></a>Logout</button>
-                <button id="logout" type="submit" onclick=myfunc()><a class="textnodeco hover" href="{% url 'download_pdf' %}"  ></a>Download pdf</button>
+                <button id="logout" onclick=myfunc2()><a class="textnodeco hover" href="{% url 'download_pdf' %}"  ></a>Download pdf</button>
             </div>
         </div>
     </div>
@@ -65,6 +65,9 @@
             else{
                 alert("Logout denied by user")
             }
+        }
+        function  myfunc2(){
+            window.location.href="{% url 'download_pdf' %}"; 
         }
     </script>
 </body>
